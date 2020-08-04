@@ -4,6 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
+    "nodemailer": "^6.4.11",
     "sip": "^0.0.6"
   }
 }

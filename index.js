@@ -1,5 +1,16 @@
+const nodemailer = require('nodemailer');
 const sip = require('sip');
 const udp = require('dgram');
+
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'eduardo@cloudcom.com.br',
+    pass: '190790edu'
+  }
+});
+
+let statusAtual = 200;
 
 sip.start({port: 6061}, function(rq) { sip.send(sip.makeResponse(rq, 500)); });
 var socket = udp.createSocket('udp4');
@@ -27,7 +38,24 @@ function test1() {
         }
       },
       function(rs) {
-        console.log(rs.status)
+        if(statusAtual !== rs.status){
+          statusAtual = rs.status
+
+          const mailOptions = {
+            from: 'suporte@cloudcom.com.br',
+            to: 'suporte@cloudcom.com.br',
+            subject: 'Status do DirectConnect Alterado',
+            text: `Status da reposta ${rs.status}`
+          };
+
+          transporter.sendMail(mailOptions, function(error, info){
+            if (error) {
+            // console.log(error);
+            } else {
+              // console.log('Email sent: ' + info.response);
+            }
+          });
+        }
       }
     );
   }, 5000);
