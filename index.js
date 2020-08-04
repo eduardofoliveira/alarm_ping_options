@@ -1,7 +1,7 @@
 const sip = require('sip');
 const udp = require('dgram');
 
-sip.start({}, function(rq) { sip.send(sip.makeResponse(rq, 500)); });
+sip.start({port: 6061}, function(rq) { sip.send(sip.makeResponse(rq, 500)); });
 var socket = udp.createSocket('udp4');
 socket.bind(6060);
 
