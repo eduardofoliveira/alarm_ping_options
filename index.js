@@ -46,6 +46,7 @@ function test1() {
 
         if(statusAtual !== rs.status){
           statusAtual = rs.status
+          tentativas = 0;
           console.log('Troca de status: ' + statusAtual);
         }
 
