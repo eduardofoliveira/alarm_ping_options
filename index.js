@@ -11,6 +11,7 @@ const transporter = nodemailer.createTransport({
 });
 
 let statusAtual = 408;
+let tentativas = 0;
 
 sip.start({port: 6061}, function(rq) { sip.send(sip.makeResponse(rq, 500)); });
 var socket = udp.createSocket('udp4');
@@ -40,10 +41,16 @@ function test1() {
       function(rs) {
         if(statusAtual !== rs.status){
           statusAtual = rs.status
+        }
 
+        if(statusAtual === rs.status){
+          tentativas + tentativas + 1;
+        }
+
+        if(tentativas === 5){
           const mailOptions = {
             from: 'suporte@cloudcom.com.br',
-            to: 'suporte@cloudcom.com.br',
+            to: 'suporte.basix@cloudcom.com.br',
             subject: 'Status do DirectConnect Alterado',
             text: `Status da reposta ${rs.status}`
           };
