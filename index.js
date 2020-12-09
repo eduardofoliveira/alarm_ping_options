@@ -55,7 +55,7 @@ function test1() {
 
           const mailOptions = {
             from: 'suporte@cloudcom.com.br',
-            to: 'suporte.basix@cloudcom.com.br',
+            to: 'suporte.basix@cloudcom.com.br, eduardo@cloudcom.com.br',
             subject: 'Status do DirectConnect Alterado',
             text: `Status da reposta ${rs.status}`
           };
