@@ -39,15 +39,19 @@ function test1() {
         }
       },
       function(rs) {
-        if(statusAtual !== rs.status){
-          statusAtual = rs.status
-        }
-
         if(statusAtual === rs.status){
           tentativas + tentativas + 1;
+          console.log('Tentativas: ' + tentativas);
+        }
+
+        if(statusAtual !== rs.status){
+          statusAtual = rs.status
+          console.log('Troca de status: ' + statusAtual);
         }
 
         if(tentativas === 5){
+          console.log('Envio de email: ' + rs.status);
+
           const mailOptions = {
             from: 'suporte@cloudcom.com.br',
             to: 'suporte.basix@cloudcom.com.br',
