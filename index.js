@@ -40,7 +40,7 @@ function test1() {
       },
       function(rs) {
         if(statusAtual === rs.status){
-          tentativas + tentativas + 1;
+          tentativas = tentativas + 1;
           console.log('Tentativas: ' + tentativas);
         }
 
